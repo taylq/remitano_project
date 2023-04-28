@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/">Funny Movie</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavDropdown">
+      <% if current_user.present? %>
+        <%= link_to 'Sign out', destroy_user_session_path, class: "btn btn-light ms-3", data: {"turbo-method": :delete} %>
+        <%#= link_to 'Share a movies', share_path, class: "btn btn-warning ms-3" %>
+        <span class="text-white">Welcome <%= current_user.email %></span>
+      <% else %>
+        <%= form_for(:user, :url => session_path(:user), html: {class: 'd-flex'}) do |f| %>
+          <div class="input-group">
+            <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+          </div>
+          <div class="input-group ms-3">
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+          <%= f.submit "Login / Register", class: "btn btn-light ms-3" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</nav>

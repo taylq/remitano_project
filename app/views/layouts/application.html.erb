@@ -11,8 +11,14 @@
   </head>
 
   <body>
+    <% if notice.present? %>
+      <div id="flash" class="notice"><%= notice %></div>
+    <% end  %>
+
+    <% if alert.present? %>
+      <div id="flash" class="alert"><%= alert %></div>
+    <% end  %>
+    <%= render partial: "/layouts/header" %>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
   </body>
 </html>
