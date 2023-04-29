@@ -14,7 +14,8 @@ class Movie < ApplicationRecord
     id = Movie.get_youtube_id(self.url)
     movie = Movie.init_youtube(id)
     self.title = movie.title
-    self .description = movie.description
+    self.description = movie.description
+    self.youtube_id = id
   end
 
   def self.init_youtube(id)
