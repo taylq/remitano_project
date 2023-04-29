@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save
+      flash[:notice] = "Share movie success!"
       redirect_to root_path
     else
       flash[:alert] = @movie.errors.full_messages.join(", ")
