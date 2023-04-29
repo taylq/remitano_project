@@ -11,12 +11,57 @@
             </div>
             <div class="col-6 text-start">
               <a href="<%= movie.url %>" class="my-2"><%= movie.title %></a>
-              <p>Shared by: <%= movie.user.email %></p>
-              <p>Description:</p>
-              <p><%= truncate(movie.description.html_safe, length: 200) %></p>
+              <div class="d-flex my-2 justify-content-between align-items-center">
+                Shared by: <%= movie.user.email %>
+                <% if current_user.present? %>
+                  <div class="d-flex flex-row">
+                    <% if movie.ratings.where(user_id: current_user).count == 0 %>
+                      <%= link_to vote_path(rating: {user_id: current_user, movie_id: movie.id, is_voted_up: true}), class: "btn btn-link btn-thumbs", data: {"turbo-method": :post} do %>
+                        <%= image_tag "/images/thumbs-up.svg" %>
+                      <% end %>
+                      <%= link_to vote_path(rating: {user_id: current_user, movie_id: movie.id, is_voted_up: false}), class: "btn btn-link btn-thumbs", data: {"turbo-method": :post} do %>
+                        <%= image_tag "/images/thumbs-down.svg" %>
+                      <% end %>
+                    <% end  %>
+
+                    <% if movie.ratings.where(user_id: current_user, is_voted_up: true).count > 0 %>
+                      <%= link_to unvote_path(user_id: current_user, movie_id: movie.id), class: "btn btn-link btn-thumbs unvote", data: {"turbo-method": :post} do %>
+                        <%= image_tag "/images/thumbs-up.svg" %>
+                      <% end %>
+                    <% end %>
+
+                    <% if movie.ratings.where(user_id: current_user, is_voted_up: false).count > 0 %>
+                      <%= link_to unvote_path(user_id: current_user, movie_id: movie.id), class: "btn btn-link btn-thumbs unvote", data: {"turbo-method": :post} do %>
+                        <%= image_tag "/images/thumbs-down.svg" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="widget w-100 text-start my-2">
+                <div class="upvote thumbs">
+                  <div>
+                    <span class="vote-up-number">
+                      <%= movie.vote_up %>
+                    </span>
+                    <%= image_tag "/images/thumbs-up.svg" %>
+                  </div>
+                </div>
+                <div class="downvote thumbs">
+                  <div>
+                    <span class="vote-down-number">
+                      <%= movie.vote_down %>
+                    </span>
+                    <%= image_tag "/images/thumbs-down.svg" %>
+                  </div>
+                </div>
+              </div>
+              <div class="my-2">Description:</div>
+              <div class="my-2"><%= truncate(movie.description.html_safe, length: 200) %></div>
             </div>
           </div>
         <%  end %>
+        <%= paginate @movies %>
       </div>
     </div>
   </section>

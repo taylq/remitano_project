@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
   get '/share', to: 'movies#index'
   post '/share', to: 'movies#create'
+  post '/vote', to: 'ratings#create'
+  post '/unvote', to: 'ratings#destroy'
 end

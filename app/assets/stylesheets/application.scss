@@ -32,3 +32,116 @@ body{
         width: 100%;
     }
 }
+
+.widget {
+    text-align: center;
+    display: inline-block;
+    i {
+        font-size: 20px;
+        padding: 12px;
+        border-radius: 50%;
+        background: #f0f0f0;
+        transition: all 400ms ease;
+        cursor: pointer;
+    }
+    .thumbs {
+        box-sizing: border-box;
+        display: inline-flex;
+        justify-content: space-between;
+        div {
+            text-align: center;
+            width: 100%;
+        }
+        p {
+            margin: 5px 0 0 0;
+            padding: 0;
+            font-size: 14px;
+        }
+    }
+    i.fa-thumbs-down {
+        transform: scaleX(-1);
+        &:before {
+            display: inline-block;
+            animation-name: downvote;
+            animation-duration: 500ms;
+            animation-play-state: paused;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+        }
+    }
+    i.fa-thumbs-up {
+        &:before {
+            display: inline-block;
+            animation-name: upvote;
+            animation-duration: 500ms;
+            animation-play-state: paused;
+            animation-iteration-count: infinite;
+        }
+    }
+    i.fa-thumbs-up.clicked {
+        background: limegreen;
+        color: white;
+        &:before {
+            animation-play-state: running;
+        }
+    }
+    i.fa-thumbs-down.clicked {
+        background: tomato;
+        color: white;
+        &:before {
+            animation-play-state: running;
+        }
+    }
+}
+
+.btn-thumbs {
+    width: 75px;
+    &:focus {
+        box-shadow: none;
+    }
+    &:hover {
+        opacity: 0.5;
+    }
+    img {
+        width: 100%;
+    }
+}
+
+.pagination a, .pagination span.current, .pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+}
+
+.pagination {
+    border-left: 1px solid #ddd;
+    .first{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .page{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .next{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .last{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+}
