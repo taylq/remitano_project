@@ -17,6 +17,7 @@ gem "devise"
 gem "bootstrap"
 gem "yt", "~> 0.32.0"
 gem "kaminari"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
