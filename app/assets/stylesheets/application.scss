@@ -26,3 +26,9 @@ body{
     text-align: center;
     padding-top: 5rem;
 }
+
+#new_movie {
+    .field_with_errors {
+        width: 100%;
+    }
+}

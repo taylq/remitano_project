@@ -1,0 +1,21 @@
+<main>
+  <section class="py-5 text-center container">
+    <div class="card w-50 m-auto">
+      <div class="card-header">
+        Share a youtube movie
+      </div>
+      <div class="card-body row">
+        <p class="col-3 card-text">Youtube URL:</p>
+        <div class="col-6">
+          <%= form_for :movie, html: {id: "new_movie"} do |f| %>
+            <div class="input-group mb-3">
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.text_field :url, class: 'form-control', placeholder: "Youtube url" %>
+            </div>
+            <%= f.submit "Share", class: "btn btn-primary d-block w-100" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

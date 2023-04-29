@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavDropdown">
       <% if current_user.present? %>
         <%= link_to 'Sign out', destroy_user_session_path, class: "btn btn-light ms-3", data: {"turbo-method": :delete} %>
-        <%#= link_to 'Share a movies', share_path, class: "btn btn-warning ms-3" %>
+        <%= link_to 'Share a movies', share_path, class: "btn btn-warning ms-3" %>
         <span class="text-white">Welcome <%= current_user.email %></span>
       <% else %>
         <%= form_for(:user, :url => session_path(:user), html: {class: 'd-flex'}) do |f| %>

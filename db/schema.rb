@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_29_025151) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_29_035532) do
   create_table "movies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -18,9 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_025151) do
     t.integer "vote_up", default: 0
     t.integer "vote_down", default: 0
     t.bigint "user_id", null: false
-    t.bigint "rating_id", null: false
+    t.bigint "rating_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "youtube_id"
     t.index ["rating_id"], name: "index_movies_on_rating_id"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
